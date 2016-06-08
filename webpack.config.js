@@ -6,6 +6,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+      {
+        test   : /\.js$/,
+        exclude: /node_modules/,
+        loader : 'jshint-loader'
+      }
+    ],
     loaders: [
       {
         test   : /\.js$/,
@@ -14,7 +21,25 @@ module.exports = {
         query  : {
           presets: [ 'es2015' ]
         }
+      },
+      {
+        test   : /\.css$/,
+        exclude: /node_modules/,
+        loader : 'style!css'
+      },
+      {
+        test   : /\.scss$/,
+        exclude: /node_modules/,
+        loader : 'style!css!sass'
+      },
+      {
+        test   : /\.(jpg|png|gif)$/,
+        include: /images/,
+        loader : 'url'
       }
     ]
+  },
+  jshint: {
+    esversion: 6
   }
 };
